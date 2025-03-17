@@ -1,6 +1,7 @@
 #include "dijkstras.h"
 
 vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& previous){
+
     int num_vertices = G.size();
     vector <int> distances(num_vertices, INF);
     // storing shortest distance 
@@ -26,7 +27,7 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
             if (!visited[v] && distances[curr] + weight < distances[v]){
                 distances[v] = distances[curr] + weight;
                 previous[v] = curr;
-                minHeap.push({v, distances[v]});
+                minHeap.push({distances[v], v});
             }
         }
     }
@@ -44,11 +45,11 @@ vector<int> extract_shortest_path(const vector<int>& /*distances*/, const vector
 
 void print_path(const vector<int>& v, int total){
     if (v.empty()){
-        cout << "Total cost:" << total << endl;
+        cout << "Total cost is " << total << endl;
     }
 
     for (size_t i = 0; i < v.size(); ++i){
         cout << v[i] << " ";
     }
-    cout << "Total cost: " << total << endl;
+    cout << endl << "Total cost is " << total << endl;
 }
